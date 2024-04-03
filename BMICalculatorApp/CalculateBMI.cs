@@ -12,3 +12,5 @@ namespace BMICalculator
             // Console.WriteLine("Your BMI is: " + bmi);
         }
 }
+
+}
