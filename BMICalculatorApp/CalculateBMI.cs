@@ -1,16 +1,29 @@
 //this layer will be responsible for BMI calculation
 //
+using System.Reflection.Metadata.Ecma335;
+
 namespace BMICalculator
 {
-    class BMICalculator
+    class CalculateBMI
     {
-        public void CalculateBMI()
+        public static double BMICalculator(double h, double w)
         {
-            // Console.WriteLine("Please enter your weight in kilograms: ");
-            // double weight = Convert.ToDouble(Console.ReadLine());
-            // double bmi = weight / (height * height);
-            // Console.WriteLine("Your BMI is: " + bmi);
-        }
-}
+            double height = h;
+            double weight = w;
+            double bmiExactValue = weight / (height * height);
+            double bmi = Math.Round(bmiExactValue, 1);
 
+            return bmi;
+
+        }
+        // {
+        //     // Console.WriteLine("Please enter your weight in kilograms: ");
+        //     // double weight = Convert.ToDouble(Console.ReadLine());
+        //     // double bmi = weight / (height * height);
+        //     // Console.WriteLine("Your BMI is: " + bmi);
+        // }
+
+       
+
+   } 
 }
