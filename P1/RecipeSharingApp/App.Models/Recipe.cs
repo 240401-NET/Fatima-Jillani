@@ -1,4 +1,5 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+
 
 
 namespace App.Models;
@@ -7,10 +8,14 @@ public class Recipe
 {
     public int RecipeId { get; set; }
 
+    
+    
     public string Title { get; set; }
 
-    public string Directions { get; set; }
+    
+    public string  Directions { get; set; }
 
+    
     public string Ingredients { get; set; }
 
     public int PostedBy { get; set; }

@@ -58,22 +58,6 @@ namespace App.Controllers
 
         // edit recipe by id
         [HttpPut("/recipe/{id}")]
-
-        // public async Task<ActionResult<Recipe>> UpdateRecipeById(int id, [FromBody] Recipe recipe)
-        // {
-
-        //     Recipe? updatedRecipe = await _recipeRepository.UpdateRecipeById(id, recipe);
-
-        //     if(updatedRecipe == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     else
-        //     {
-        //         return Ok(updatedRecipe);
-        //     }
-
-        // }
         public async Task<ActionResult<Recipe>> UpdateRecipeById(int id, [FromBody] Recipe recipe)
         {
             if (recipe == null)

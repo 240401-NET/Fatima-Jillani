@@ -9,42 +9,12 @@ namespace RecipeSharingApp.Tests
 {
     public class RecipeServiceTest
     {
-        [Fact]
-        public void RecipeServiceShouldCreateRecipe()
-        {
-            // Arrange
-            Mock<IRecipeRepository> repoMock = new Mock<IRecipeRepository>();
-
-            Recipe fakeRecipe = new Recipe
-            {
-                Title = "testtitle",
-                Directions  = "Test Recipe",
-                Ingredients = "Test Ingredients",
-                PostedBy = 1,
-                CreatedAt = DateTime.Now
-            };
-
-            repoMock.Setup(r => r.CreateRecipe(It.IsAny<Recipe>())).Returns(fakeRecipe);
-            RecipeServices service = new RecipeServices(repoMock.Object); 
-
-            // Act
-            Recipe createdRecipe = service.CreateRecipe(new Recipe());
-
-            // Assert
-            Assert.NotNull(createdRecipe);
-            Assert.Equal(fakeRecipe.PostedBy, createdRecipe.PostedBy);
-            Assert.Equal(fakeRecipe.Title, createdRecipe.Title);
-            // Add other assertions as needed
-
-            // Verify that CreateRecipe of RecipeRepository was called exactly once
-            repoMock.Verify(repo => repo.CreateRecipe(It.IsAny<Recipe>()), Times.Exactly(1));
-
-        }
-
-
+       
         [Theory]
         [InlineData("testtitle1", "Test Recipe1", "Test Ingredients1", 1)]
         [InlineData("testtitle2", "Test Recipe2", "Test Ingredients2", 2)]
+        [InlineData("12333", "   Test 22%% Recipe3", "%$@@Test Ingredients3  !##", 3)]
+    
         public void CreateRecipe_Should_Return_CreatedRecipe(string title, string directions, string ingredients, int postedBy)
         {
             // Arrange
@@ -63,16 +33,44 @@ namespace RecipeSharingApp.Tests
             RecipeServices service = new RecipeServices(repoMock.Object);
 
             // Act
-            Recipe createdRecipe = service.CreateRecipe(new Recipe());
+            Recipe createdRecipe = service.CreateRecipe(fakeRecipe);
 
             // Assert
             Assert.NotNull(createdRecipe);
             Assert.Equal(fakeRecipe.PostedBy, createdRecipe.PostedBy);
             Assert.Equal(fakeRecipe.Title, createdRecipe.Title);
-            // Add other assertions as needed
+           
 
             // Verify that CreateRecipe of RecipeRepository was called exactly once
             repoMock.Verify(repo => repo.CreateRecipe(It.IsAny<Recipe>()), Times.Exactly(1));
+        }
+
+        
+        [Theory]
+        [InlineData("", "Test Recipe1", "Test Ingredients1", 1)]
+        [InlineData("testtitle2", "", "Test Ingredients2", 2)]
+        [InlineData("testtitle3", "Test Recipe3", "", 3)]
+        [InlineData("", "   ", "", 4)]
+
+        public  void  CreateRecipe_Should_Throw_ArgumentNullException_For_Empty_Recipe(string title, string directions, string ingredients, int postedBy)
+        {
+            // Arrange
+            Mock<IRecipeRepository> repoMock = new Mock<IRecipeRepository>();
+
+            Recipe fakeRecipe = new Recipe
+            {
+                Title = title,
+                Directions = directions,
+                Ingredients = ingredients,
+                PostedBy = postedBy,
+                CreatedAt = DateTime.Now
+            };
+
+            repoMock.Setup(r => r.CreateRecipe(It.IsAny<Recipe>())).Returns(fakeRecipe);
+            RecipeServices service = new RecipeServices(repoMock.Object);
+
+            // Act and Assert
+            Assert.Throws<ArgumentNullException>(() => service.CreateRecipe(fakeRecipe));
         }
         
         [Theory]
@@ -133,6 +131,9 @@ namespace RecipeSharingApp.Tests
             Assert.Equal(fakeUsers, users);
         }
 
-    }
+
+
+    
                 
+    }
 }

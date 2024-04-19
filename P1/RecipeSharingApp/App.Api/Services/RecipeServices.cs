@@ -24,6 +24,14 @@ public class RecipeServices : IRecipeServices
     // post new recipe
     public Recipe CreateRecipe(Recipe recipe)
     {
+         if (recipe == null)
+        {
+            throw new ArgumentNullException(nameof(recipe));
+        }
+        if (string.IsNullOrWhiteSpace(recipe.Title) || string.IsNullOrWhiteSpace(recipe.Directions) || string.IsNullOrWhiteSpace(recipe.Ingredients))
+        {
+            throw new ArgumentNullException("Title, Directions and Ingredients are required");
+        }
         return _recipeRepository.CreateRecipe(recipe);
        
     }
