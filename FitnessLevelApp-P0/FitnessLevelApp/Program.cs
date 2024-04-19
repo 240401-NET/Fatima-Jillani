@@ -68,8 +68,6 @@ namespace BMICalculator
             //Persist the user data to the file
             Data.PersistUserData(users);
 
-            
-            // Console.WriteLine("GoodBye...:)");
 
         }
 

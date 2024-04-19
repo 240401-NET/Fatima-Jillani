@@ -85,7 +85,9 @@ namespace BMICalculator
             Console.WriteLine("Existing users BMI: ");
 
             foreach (User user in users)
+             
             {
+                Console.WriteLine("------------------------");
                 Console.WriteLine(user.ToString());
             }
         }
