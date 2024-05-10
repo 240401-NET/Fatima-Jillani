@@ -13,12 +13,16 @@ public class RecipeServices : IRecipeServices
         
     }
 
+    
+
 
     public RecipeServices(IRecipeRepository repository, ILogger<RecipeServices> logger)
     {
         _recipeRepository = repository;
          _logger = logger;
     }
+
+
 
 
     // post new recipe
@@ -36,11 +40,14 @@ public class RecipeServices : IRecipeServices
        
     }
 
+
+
     // get all recipes  
     public IEnumerable<Recipe> GetAllRecipes()
     {
         return _recipeRepository.GetAllRecipes();
     }
+
 
     // get recipe by id
    public IEnumerable<Recipe> GetRecipesByUserId(int postedBy)
@@ -56,11 +63,6 @@ public class RecipeServices : IRecipeServices
             throw;
         }
     }
-
-    // public User GetUserByRecipeId(int recipeId)
-    // {
-    //     return _RecipeRepository.GetUserByRecipeId(recipeId);
-    // }
 
     
 }

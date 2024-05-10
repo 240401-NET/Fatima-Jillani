@@ -7,10 +7,13 @@ public class UserRepository : IUserRepository
 {
     private readonly _240401netFjContext _context;
 
+
     public UserRepository(_240401netFjContext context)
     {
         _context = context;
     }
+    
+
 
     // create
     public User CreateUser(User user)
@@ -19,6 +22,8 @@ public class UserRepository : IUserRepository
         _context.SaveChanges();
         return user;
     } 
+
+
     // get all users 
     public IEnumerable<User> GetAllUsers()
     {
@@ -32,6 +37,7 @@ public class UserRepository : IUserRepository
                         .Where(u => u.Username.ToLower().Contains(username.ToLower()))
                         .ToList();
     }
+    
     public User? GetUserByID(int user_id)
     {
         return _context.Users.Find(user_id);

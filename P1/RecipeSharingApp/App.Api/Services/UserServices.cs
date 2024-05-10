@@ -38,6 +38,7 @@ public class UserServices : IUserServices
         username = username.ToLower().Trim();
         return _userRepository.GetUsersByUsername(username);
     }
+    
 
     //get user by id
     public User? GetUserByID(int id)

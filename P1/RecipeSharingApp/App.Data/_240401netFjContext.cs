@@ -10,10 +10,7 @@ public partial class _240401netFjContext : DbContext
     {
     }
 
-    public _240401netFjContext(DbContextOptions<_240401netFjContext> options)
-        : base(options)
-    {
-    }
+    public _240401netFjContext(DbContextOptions<_240401netFjContext> options) : base(options){}
 
     public virtual DbSet<Recipe> Recipes { get; set; }
 

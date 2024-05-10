@@ -13,11 +13,10 @@ namespace App.Controllers
     {
         private readonly IRecipeRepository _recipeRepository;
         private readonly IRecipeServices _recipeServices;
-        private readonly IUserRepository _userRepository;
-        public RecipeController(IRecipeServices recipeServices, IUserRepository userRepository, IRecipeRepository recipeRepository)
+
+        public RecipeController(IRecipeServices recipeServices, IRecipeRepository recipeRepository)
         {
             this._recipeServices = recipeServices;
-            this._userRepository = userRepository;
             this._recipeRepository = recipeRepository;
         }
 

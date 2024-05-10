@@ -20,17 +20,12 @@ namespace App.Controllers
         }
         
 
-        //public RecipeController(IRecipeRepository recipeRepository, IRecipeServices recipeServices)
-        //{
-        //    _recipeRepository = recipeRepository;
-        //    this._recipeServices = recipeServices;
-        //}
-
         [HttpGet]
         public IEnumerable<User> GetAllUsers()
         {
             return _userServices.GetAllUsers();
         }
+        
 
         [HttpGet]
         [Route("{id}")]
